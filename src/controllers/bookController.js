@@ -3,13 +3,7 @@ const { readData, writeData } = require('../utils/fileHandler');
 
 const BOOKS_FILE = 'books.json';
 
-// // GET all books
-// const getAllBooks = async (req, res) => {
-//   const books = await readData(BOOKS_FILE);
-//   res.json(books);
-// };
 
-// GET book by ID
 const getBookById = async (req, res) => {
   const books = await readData(BOOKS_FILE);
   const book = books.find(b => b.id === req.params.id);
@@ -17,7 +11,6 @@ const getBookById = async (req, res) => {
   res.json(book);
 };
 
-// POST add new book
 const addBook = async (req, res) => {
   let { title, author, genre, publishedYear } = req.body;
 
@@ -51,7 +44,7 @@ const addBook = async (req, res) => {
   res.status(201).json({ message: 'Book added successfully', book: newBook });
 };
 
-// PUT update book
+
 const updateBook = async (req, res) => {
   const books = await readData(BOOKS_FILE);
 
@@ -89,7 +82,6 @@ const updateBook = async (req, res) => {
   res.json({ message: 'Book updated successfully', book: books[index] });
 };
 
-// DELETE book
 const deleteBook = async (req, res) => {
   const books = await readData(BOOKS_FILE);
   const book = books.find(b => b.id === req.params.id);
